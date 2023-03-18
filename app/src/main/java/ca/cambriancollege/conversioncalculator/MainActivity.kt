@@ -1,9 +1,8 @@
-package ca.rishabhBhutani.conversion
+package ca.cambriancollege.conversioncalculator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
-import ca.cambriancollege.conversioncalculator.R
 
 class MainActivity : AppCompatActivity() {
 
