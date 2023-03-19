@@ -6,6 +6,7 @@ import android.widget.*
 
 class MainActivity : AppCompatActivity() {
 
+    // Declaring private variables for all the UI elements we'll be using
     private lateinit var spinner: Spinner
     private lateinit var spinner1: Spinner
     private lateinit var input : EditText
@@ -16,18 +17,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Initializing all the UI elements using their respective IDs from the layout file
         input = findViewById<EditText>(R.id.editText1)
         spinner = findViewById<Spinner>(R.id.spinner1)
         spinner1 = findViewById<Spinner>(R.id.spinner2)
         buttonConvert = findViewById<Button>(R.id.submitbutton)
         result = findViewById<TextView>(R.id.editText2)
 
+        // Creating a list of entries for the spinners
         var enteries = mutableListOf("Miles", "KM", "Meter", "CM", "Millimeter", "Inches")
+
+        // Creating an ArrayAdapter to populate the spinners with the entries
         val arrayAdapter = ArrayAdapter<String>(this, com.google.android.material.R.layout.support_simple_spinner_dropdown_item, enteries)
 
+        // Setting the adapters for the spinners
         spinner.adapter = arrayAdapter
         spinner1.adapter = arrayAdapter
 
+        // Setting a click listener for the convert button
         buttonConvert.setOnClickListener {
             convert()
         }
@@ -35,6 +42,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun convert() {
 
+        // Declaring conversion factors for all the possible conversions
         val milestoKm : Double = 1.60934
         val mtoInch : Double = 63360.0
         val kmtoM : Double = 1000.00
@@ -47,6 +55,7 @@ class MainActivity : AppCompatActivity() {
         val inchtoMile : Double = 6360.0
         val inches : Double = 2.54
 
+        // Getting the input value from the EditText field and converting it to a Double
         val inputVal = input.text.toString()
         if(inputVal.isEmpty()) {
             Toast.makeText(this, "Please enter a valid input value", Toast.LENGTH_SHORT).show()
@@ -57,6 +66,7 @@ class MainActivity : AppCompatActivity() {
         val from = spinner.selectedItem.toString()
         val to = spinner1.selectedItem.toString()
 
+        // Calculating the conversion output based on the selected conversion
         var output = when {
             from == "Miles" && to == "KM" -> input * milestoKm
             from == "Miles" && to == "Meter" -> input * milestoKm * kmtoM
